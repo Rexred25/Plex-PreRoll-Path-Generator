@@ -43,7 +43,7 @@ namespace Plex_PreRoll_Path_Generator
             Folder_Select_Button.TabIndex = 1;
             Folder_Select_Button.Text = "Choose Folder";
             Folder_Select_Button.UseVisualStyleBackColor = true;
-            Folder_Select_Button.Click += button1_Click;
+            Folder_Select_Button.Click += Folder_Select_Button_Click;
             // 
             // Selected_Folder_TextBox
             // 

@@ -11,31 +11,23 @@ namespace Plex_PreRoll_Path_Generator
         private string txt_File_Path;
         private List<string> file_Paths = new List<string>();
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Folder_Select_Button_Click(object sender, EventArgs e)
         {
-            File_Viewer_Button.Visible = false;
+            File_Viewer_Button.Visible = false; // Hides the file viewer button initially.
             using (FolderBrowserDialog dialog = new FolderBrowserDialog())
             {
-                dialog.Description = "Select a folder";
+                dialog.Description = "Select a folder"; // Sets the dialog's description.
 
-                DialogResult result = dialog.ShowDialog();
+                DialogResult result = dialog.ShowDialog(); // Displays the dialog and waits for user action.
 
-                if (result == DialogResult.OK)
+                if (result == DialogResult.OK) // Checks if the user clicked the OK button.
                 {
-                    string selected_Path = dialog.SelectedPath;
-                    Selected_Folder_TextBox.Text = selected_Path;
+                    string selected_Path = dialog.SelectedPath; // Retrieves the path of the selected folder.
+                    Selected_Folder_TextBox.Text = selected_Path; // Displays the selected path in the TextBox.
                 }
             }
-            Create_File_Button.Visible = true;
+            Create_File_Button.Visible = true; // Makes the create file button visible after a folder is selected.
 
-            //List<string> file_Paths = new List<string>();
-
-            
-        }
-
-        private void File_Viewer_Button_Click(object sender, EventArgs e)
-        {
-            Process.Start(new ProcessStartInfo(txt_File_Path) { UseShellExecute = true });
         }
 
         private void Create_File_Button_Click(object sender, EventArgs e)
@@ -45,18 +37,14 @@ namespace Plex_PreRoll_Path_Generator
                 // Get the files from the selected folder
                 string[] files = Directory.GetFiles(Selected_Folder_TextBox.Text);
                 txt_File_Path = Selected_Folder_TextBox.Text;
-
-                // Combine with parent directory to create the file path
-                txt_File_Path = Path.GetFullPath(Path.Combine(txt_File_Path, @"..\PreRoll Path.txt"));
-
+                txt_File_Path = Path.GetFullPath(Path.Combine(txt_File_Path, @"..\PreRoll Path.txt"));  // Combine with parent directory to create the file path
                 // Create the file (this step creates an empty file)
-                using (FileStream fs = File.Create(txt_File_Path))
+                using (FileStream fs = File.Create(txt_File_Path))                  
                 {
-                    // Just creating the file; do not write anything here
+                    // Just creating the file;
                 }
 
-                // Populate the list with file paths
-                foreach (string file_Path in files)
+                foreach (string file_Path in files)                 // Populate the list with file paths
                 {
                     file_Paths.Add(file_Path);
                 }
@@ -79,6 +67,10 @@ namespace Plex_PreRoll_Path_Generator
                 // Optionally handle the exception (e.g., log it or show a message)
                 MessageBox.Show($"An error occurred: {ex.Message}");
             }
+        }
+        private void File_Viewer_Button_Click(object sender, EventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(txt_File_Path) { UseShellExecute = true }); //Opens the 'PreRoll.txt' file that has just been generated or modified
         }
     }
 }
