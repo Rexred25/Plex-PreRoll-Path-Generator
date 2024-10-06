@@ -27,7 +27,6 @@ namespace Plex_PreRoll_Path_Generator
                 }
             }
             Create_File_Button.Visible = true; // Makes the create file button visible after a folder is selected.
-
         }
         private void Create_File_Button_Click(object sender, EventArgs e)
         {
@@ -42,12 +41,10 @@ namespace Plex_PreRoll_Path_Generator
                 {
                     // Just creating the file;
                 }
-
                 foreach (string file_Path in files)                 // Populate the list with file paths
                 {
                     file_Paths.Add(file_Path);
                 }
-
                 // Write the paths to the file
                 using (StreamWriter sw = new StreamWriter(txt_File_Path)) // Create a StreamWriter to write to the file
                 {
@@ -59,7 +56,6 @@ namespace Plex_PreRoll_Path_Generator
                 MessageBox.Show("File paths written successfully to: " + txt_File_Path);
                 File_Viewer_Button.Visible = true;
                 Create_File_Button.Visible = false;
-
             }
             catch (Exception ex)
             {
