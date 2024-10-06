@@ -29,7 +29,6 @@ namespace Plex_PreRoll_Path_Generator
             Create_File_Button.Visible = true; // Makes the create file button visible after a folder is selected.
 
         }
-
         private void Create_File_Button_Click(object sender, EventArgs e)
         {
             try
